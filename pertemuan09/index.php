@@ -1,16 +1,17 @@
 <?php 
+    // hubungkan koneksi yang ada di file functions.php
     require 'functions.php';
 
+    // buat query mengambil data
     $mahasiswas = query("SELECT * FROM mahasiswa");
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Admin</title>
+    <title>Daftar Mahasiswa</title>
 
     <style>
         img {
@@ -22,7 +23,6 @@
     <h1>Daftar Mahasiswa</h1>
 
     <table border="1" cellpadding="10" cellspacing="0">
-
         <tr>
             <th>No.</th>
             <th>Aksi</th>
@@ -32,24 +32,26 @@
             <th>Email</th>
             <th>Jurusan</th>
         </tr>
-        
+
+        <!-- membuat nomer urut -->
         <?php $i = 1; ?>
-        <?php foreach ( $mahasiswas as $row ) : ?>
+        <!-- membuat pengulangan pemanggilan data pada setiap baris -->
+        <?php foreach ($mahasiswas as $mahasiswa) : ?>
         <tr>
             <td><?php echo $i; ?></td>
             <td>
-                <a href="#">Hapus</a>
-                <a href="#">Perbarui</a>
+                <a href="#">hapus</a> |
+                <a href="#">ubah</a>
             </td>
-            <td><img src="img/<?php echo $row["gambar"]; ?>" alt=""></td>
-            <td><?php echo $row["nim"]; ?></td>
-            <td><?php echo $row["nama"]; ?></td>
-            <td><?php echo $row["email"]; ?></td>
-            <td><?php echo $row["jurusan"]; ?></td>
+            <td><img src="img/<?php echo $mahasiswa["gambar"]; ?>" alt=""></td>
+            <td><?php echo $mahasiswa["nim"]; ?></td>
+            <td><?php echo $mahasiswa["nama"]; ?></td>
+            <td><?php echo $mahasiswa["email"]; ?></td>
+            <td><?php echo $mahasiswa["jurusan"]; ?></td>
         </tr>
-        
         <?php $i++; ?>
         <?php endforeach; ?>
+
     </table>
 </body>
 </html>
